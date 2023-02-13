@@ -17,9 +17,16 @@
     <style name="Theme.PicturesViewer.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="actionModeBackground">@color/purple_500</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="Theme.PicturesViewer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PicturesViewer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+
 </resources>

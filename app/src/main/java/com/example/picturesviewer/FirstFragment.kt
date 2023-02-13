@@ -1,10 +1,9 @@
 package com.example.picturesviewer
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -47,13 +46,53 @@ class FirstFragment : Fragment() {
 
         adapter.onClick = {
             val t = items[rv.getChildAdapterPosition(it)]
-            val bundle = bundleOf("NOM" to getString(t.foto))
+            val bundle = bundleOf("foto" to t.foto)
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
         }
 
 //        binding.buttonFirst.setOnClickListener {
 //            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 //        }
+        var modeCallBack: ActionMode.Callback = object : ActionMode.Callback {
+            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+                val id = item?.itemId
+                when (id) {
+                    R.id.action_editar -> {
+                        Log.i("MainActivity", "editar")
+                        mode?.finish()
+                    }
+                    R.id.action_eliminar -> {
+                        Log.i("MainActivity", "eliminar")
+                        mode?.finish()
+                    }
+                    R.id.action_compartir -> {
+                        Log.i("MainActivity", "compartir")
+                        mode?.finish()
+                    }
+                    else -> return false
+                }
+                return true
+            }
+
+            override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+                return false
+            }
+
+            override fun onDestroyActionMode(mode: ActionMode?) {
+                var mode = mode
+                mode = null
+            }
+
+            override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+                mode.setTitle("Options")
+                mode.getMenuInflater().inflate(R.menu.menu_main, menu)
+                return true
+            }
+        }
+
+        adapter.onLongClick = { view ->
+            view.startActionMode(modeCallBack)
+        }
     }
 
     override fun onDestroyView() {

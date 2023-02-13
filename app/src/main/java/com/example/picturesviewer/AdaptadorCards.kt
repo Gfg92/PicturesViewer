@@ -10,9 +10,6 @@ class AdaptadorCards(var items: ArrayList<Card>) : RecyclerView.Adapter<Adaptado
     lateinit var onClick: (View) -> Unit
     lateinit var onLongClick: (View) -> Unit
 
-    init {
-        this.items = items
-    }
 
     class TarjViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -28,6 +25,7 @@ class AdaptadorCards(var items: ArrayList<Card>) : RecyclerView.Adapter<Adaptado
             setOnLongClickListener{ onLongClick(itemView)
             true}
         }
+
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TarjViewHolder {
@@ -43,4 +41,6 @@ class AdaptadorCards(var items: ArrayList<Card>) : RecyclerView.Adapter<Adaptado
     override fun getItemCount(): Int {
         return items.size
     }
+
+
 }
