@@ -1,13 +1,14 @@
 package com.example.picturesviewer
 
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.navigation.fragment.findNavController
 import com.example.picturesviewer.databinding.FragmentSecondBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SecondFragment : Fragment() {
 
@@ -34,9 +35,29 @@ class SecondFragment : Fragment() {
         foto.setImageResource(imagen)
 
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+
+        val fab = view.findViewById(R.id.floatingActionButton) as FloatingActionButton
+        fab.setImageResource(R.drawable.ic_pause)
+        var icono = 0
+
+        fab.setOnClickListener {
+            if (icono == 0) {
+                val rotar = context?.getDrawable(R.drawable.ad_animacion) as AnimatedVectorDrawable
+                fab.setImageDrawable(rotar)
+                rotar.start()
+                icono = 1
+            } else {
+                val rotar = context?.getDrawable(R.drawable.ad_animacion_inversa) as AnimatedVectorDrawable
+                fab.setImageDrawable(rotar)
+                rotar.start()
+                icono = 0
+            }
+
         }
+
+
+
+
     }
 
     override fun onDestroyView() {

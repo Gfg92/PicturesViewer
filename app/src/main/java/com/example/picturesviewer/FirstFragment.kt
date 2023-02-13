@@ -50,10 +50,8 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
         }
 
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
-        var modeCallBack: ActionMode.Callback = object : ActionMode.Callback {
+
+        val modeCallBack: ActionMode.Callback = object : ActionMode.Callback {
             override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
                 val id = item?.itemId
                 when (id) {
